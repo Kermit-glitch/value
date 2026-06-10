@@ -1,0 +1,265 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Design tokens — deep prehistoric palette                           */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* Abyss — near-black greens used for the page canvas */
+  --color-abyss-950: #030605;
+  --color-abyss-900: #060d0a;
+  --color-abyss-800: #0a1410;
+
+  /* Deep jungle greens */
+  --color-jungle-900: #0b2418;
+  --color-jungle-800: #103223;
+  --color-jungle-700: #16432f;
+  --color-jungle-600: #1f5a3f;
+  --color-jungle-400: #3e8a64;
+
+  /* Ancient earth browns */
+  --color-earth-900: #1d130b;
+  --color-earth-800: #2c1d10;
+  --color-earth-700: #3e2a17;
+  --color-earth-600: #593d20;
+  --color-earth-400: #8a6238;
+
+  /* Amber highlights */
+  --color-amber-glow: #ffb84d;
+  --color-amber-deep: #d98a2b;
+  --color-amber-pale: #ffe3b3;
+
+  /* Volcanic reds */
+  --color-volcanic-700: #7a1f0e;
+  --color-volcanic-500: #c2401c;
+  --color-volcanic-400: #ff5a2e;
+  --color-volcanic-300: #ff8c5a;
+
+  /* Misty blues */
+  --color-mist-900: #0a1622;
+  --color-mist-800: #122638;
+  --color-mist-700: #1c3a52;
+  --color-mist-500: #36506b;
+  --color-mist-300: #8fb6c9;
+  --color-mist-200: #c2dae6;
+
+  /* Bone / fossil neutrals */
+  --color-bone-100: #f2ead9;
+  --color-bone-300: #d9cbb0;
+  --color-bone-500: #a89878;
+
+  --font-display: var(--font-cinzel), "Trajan Pro", serif;
+  --font-body: var(--font-garamond), Georgia, serif;
+
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+html {
+  scroll-behavior: auto; /* Lenis owns scrolling */
+}
+
+/* Lenis smooth-scroll base styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--color-abyss-950);
+  color: var(--color-bone-100);
+  font-family: var(--font-body);
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-amber-deep);
+  color: var(--color-abyss-950);
+}
+
+/* Thin amber scrollbar keeps the museum mood */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-abyss-950);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-earth-700);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-amber-deep);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Cinematic typography helpers                                       */
+/* ------------------------------------------------------------------ */
+.heading-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.heading-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+}
+
+.body-lede {
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  line-height: 1.75;
+  color: var(--color-bone-300);
+}
+
+/* Gradient-inked headline (amber ember wash) */
+.text-ember {
+  background: linear-gradient(
+    175deg,
+    var(--color-bone-100) 20%,
+    var(--color-amber-glow) 55%,
+    var(--color-amber-deep) 85%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Atmosphere: film grain + vignette + fog drift                      */
+/* ------------------------------------------------------------------ */
+.vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgb(0 0 0 / 0.55) 100%
+  );
+}
+
+@keyframes fog-drift {
+  from {
+    transform: translate3d(-12%, 0, 0);
+  }
+  to {
+    transform: translate3d(12%, 0, 0);
+  }
+}
+
+@keyframes fog-drift-reverse {
+  from {
+    transform: translate3d(10%, 0, 0) scaleX(-1);
+  }
+  to {
+    transform: translate3d(-10%, 0, 0) scaleX(-1);
+  }
+}
+
+.fog-layer {
+  animation: fog-drift 38s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.fog-layer-reverse {
+  animation: fog-drift-reverse 52s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes ember-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--drift-x, 30px), -110vh, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes wave-roll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes caustic-shimmer {
+  0%,
+  100% {
+    opacity: 0.18;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.34;
+    transform: translate3d(-3%, 2%, 0) scale(1.06);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Accessibility                                                      */
+/* ------------------------------------------------------------------ */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-amber-deep);
+  color: var(--color-abyss-950);
+  font-family: var(--font-display);
+  border-radius: 0.25rem;
+  transition: top 0.2s ease;
+}
+.skip-link:focus-visible {
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-amber-glow);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
