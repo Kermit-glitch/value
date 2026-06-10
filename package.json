@@ -1,0 +1,33 @@
+{
+  "name": "age-of-dinosaurs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A cinematic parallax storytelling experience — journey through 180 million years of dinosaurs.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "preview:art": "node scripts/preview-silhouettes.mjs"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.6.1",
+    "framer-motion": "^12.40.0",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.23",
+    "next": "^16.2.9",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.0",
+    "@types/node": "^25.9.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.184.1",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3"
+  }
+}

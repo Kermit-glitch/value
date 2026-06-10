@@ -1,0 +1,53 @@
+{
+  "generated": "2026-06-10",
+  "note": "This build environment has no network access to external image hosts (Wikimedia Commons, Unsplash, NASA Image Library and Flickr all return 403 host_not_allowed), so no third-party photography is included. Every visual in the experience is original, hand-drawn vector and procedural artwork created for this project and released with the repository. If you later add photography, list each file here and surface it on /credits.",
+  "assets": [
+    {
+      "id": "silhouettes",
+      "title": "Dinosaur & flora silhouette set (T. rex, Brachiosaurus, Stegosaurus, Triceratops, Velociraptor, Pteranodon, Mosasaurus, sauropod herd, conifer, cycad, fern)",
+      "type": "Original SVG illustration",
+      "source": "src/components/scenery/paths.ts",
+      "author": "Created in-repo for The Age of Dinosaurs",
+      "license": "Same license as this repository"
+    },
+    {
+      "id": "scenery",
+      "title": "Mountain ridges, fog banks, clouds, waves and ammonite spiral",
+      "type": "Original SVG / CSS gradient artwork",
+      "source": "src/components/scenery + src/components/effects",
+      "author": "Created in-repo for The Age of Dinosaurs",
+      "license": "Same license as this repository"
+    },
+    {
+      "id": "particles",
+      "title": "Dust, ember, bubble, ash and star particle systems",
+      "type": "Procedural canvas / WebGL",
+      "source": "src/components/effects/ParticleField.tsx, src/components/canvas/StarField.tsx",
+      "author": "Created in-repo for The Age of Dinosaurs",
+      "license": "Same license as this repository"
+    }
+  ],
+  "recommendedSources": [
+    {
+      "name": "Wikimedia Commons — Dinosaur media",
+      "url": "https://commons.wikimedia.org/wiki/Category:Dinosauria",
+      "licenses": "Public domain / CC BY / CC BY-SA (check each file)"
+    },
+    {
+      "name": "Smithsonian Open Access",
+      "url": "https://www.si.edu/openaccess",
+      "licenses": "CC0"
+    },
+    {
+      "name": "NASA Image and Video Library (Chicxulub / impact imagery)",
+      "url": "https://images.nasa.gov",
+      "licenses": "Generally public domain"
+    },
+    {
+      "name": "Unsplash (textures, landscapes)",
+      "url": "https://unsplash.com",
+      "licenses": "Unsplash License"
+    }
+  ],
+  "dropInInstructions": "Place optimised WebP/AVIF files in public/images/<section>/ (e.g. public/images/jurassic/forest.webp), reference them with next/image, and add one entry per file to the assets array above with title, author, exact source URL and license."
+}
